@@ -2,6 +2,7 @@ class Actionable {}
 
 typedef ActionCallBack = void Function();
 typedef ActionCallBackWithName = void Function(String action);
+typedef ActionCallBackWithData = void Function(List<dynamic> data);
 typedef ActionCallBackWithNameAndData = void Function(String action, List<dynamic> data);
 
 ActionsDispatcher actionsDispatcher() {
@@ -24,6 +25,12 @@ class ActionsDispatcher {
   void regWithName(Actionable client, String action, ActionCallBackWithName call) {
     regWithNameAndData(client, action, (String action, List<dynamic> data) {
       call(action);
+    });
+  }
+
+  void regWithData(Actionable client, String action, ActionCallBackWithData call) {
+    regWithNameAndData(client, action, (String action, List<dynamic> data) {
+      call(data);
     });
   }
 
