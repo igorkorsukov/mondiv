@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:mondiv/enterprise/operations_service.dart';
 import 'package:mondiv/warp/actions_dispatcher.dart';
@@ -11,7 +9,7 @@ class InputScreen extends StatefulWidget {
   _InputScreenState createState() => _InputScreenState();
 }
 
-class _InputScreenState extends State<InputScreen> with Asyncable {
+class _InputScreenState extends State<InputScreen> with Asyncable, OperationsServiceInject {
   String _value = "";
   String _inputValue = "";
 
@@ -19,9 +17,8 @@ class _InputScreenState extends State<InputScreen> with Asyncable {
   void initState() {
     super.initState();
 
-    _value = OperationsService.instance.sumValue();
-    print("Input Screen initState");
-    OperationsService.instance.sumChanged().onReceive(
+    _value = operationsService().sumValue();
+    operationsService().sumChanged().onReceive(
         this,
         (newVal) => setState(() {
               _value = newVal;

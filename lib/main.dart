@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mondiv/ui/screens.dart';
-import 'package:mondiv/enterprise/input_action_controller.dart';
+import 'package:mondiv/enterprise/setup.dart';
 
 void main() {
-  InputActionController.instance.setup();
+  setupServices();
   runApp(MyApp());
 }
 

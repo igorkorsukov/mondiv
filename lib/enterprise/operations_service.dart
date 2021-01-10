@@ -1,6 +1,12 @@
 import 'package:mondiv/warp/async/channel.dart';
+import 'package:mondiv/warp/ioc.dart';
 
-class OperationsService {
+class OperationsServiceInject {
+  OperationsService _srv = IoC.instance.get<OperationsService>();
+  OperationsService operationsService() => _srv;
+}
+
+class OperationsService with Enjectable {
   static final OperationsService instance = OperationsService._internal();
 
   factory OperationsService() {
